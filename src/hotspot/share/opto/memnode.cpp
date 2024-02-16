@@ -4251,9 +4251,9 @@ Node* InitializeNode::complete_stores(Node* rawctl, Node* rawmem, Node* rawptr,
 
   remove_extra_zeroes();
 
-  // if (ReduceFieldZeroing || ReduceBulkZeroing)
+  if (ReduceFieldZeroing || ReduceBulkZeroing)
     // reduce instruction count for common initialization patterns
-    // coalesce_subword_stores(header_size, size_in_bytes, phase);
+    coalesce_subword_stores(header_size, size_in_bytes, phase);
 
   Node* zmem = zero_memory();   // initially zero memory state
   Node* inits = zmem;           // accumulating a linearized chain of inits
